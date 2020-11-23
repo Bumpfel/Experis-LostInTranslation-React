@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import { Menu } from './components/menu'
+import Login from './pages/login'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Menu />
+      <div className="container">
+        <Login /> {/* temp */}
+        {/* router outlet */}
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
