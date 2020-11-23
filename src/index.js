@@ -5,9 +5,9 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import Menu from './components/Menu'
-import Profile from './pages/Profile'
-import Translate from './pages/Translate'
-import Login from './pages/Login'
+import ProfilePage from './pages/ProfilePage'
+import TranslatePage from './pages/TranslatePage'
+import LoginPage from './pages/LoginPage'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,13 +17,13 @@ ReactDOM.render(
       <div className="container">
         <Switch>
           <Route path="/translate">
-            <Translate />
+            <TranslatePage />
           </Route>
           <Route path="/login">
-            <Login />
+            <LoginPage />
           </Route>
           <Route path="/profile">
-            <Profile />
+            <ProfilePage />
           </Route>
         </Switch>
       </div>

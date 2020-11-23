@@ -1,8 +1,8 @@
-const Translate = () => {
+const TranslatePage = () => {
   return (
     <div>
       Translate page
     </div>
   )
 }
-export default Translate
+export default TranslatePage
