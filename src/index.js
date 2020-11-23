@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import { Menu } from './components/menu'
-import Login from './pages/login'
+import { Menu } from './components/Menu'
+import Login from './pages/Login'
 
 ReactDOM.render(
   <React.StrictMode>
