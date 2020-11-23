@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -8,11 +9,23 @@ import Login from './pages/Login'
 
 ReactDOM.render(
   <React.StrictMode>
-      <Menu />
-      <div className="container">
-        <Login /> {/* temp */}
-        {/* router outlet */}
-    </div>
+      <Router>
+        <Menu />
+    
+        <div className="container">
+          <Switch>
+            <Route exact path="/">
+              <Login />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route>
+
+            </Route>
+        </Switch>
+      </div>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
