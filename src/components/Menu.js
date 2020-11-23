@@ -1,14 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export const Menu = props => {
+const Menu = props => {
     return (
         <nav className="navbar navbar-expand-sm navbar-light bg-light">
-            <a className="navbar-brand" href="#">Navbar</a>
+            <div className="navbar-brand">Navbar</div>
             <div className="navbar-nav">
-                <a className="nav-item nav-link active" href="#">Home</a>
-                <a className="nav-item nav-link" href="#">Profile</a>
-                <a className="nav-item nav-link" href="#">Logout</a>
+                <Link className="nav-item nav-link active" to="/translate">Home</Link>
+                <Link className="nav-item nav-link" to="/profile">Profile</Link>
+                <Link className="nav-item nav-link" to="/login">Login</Link>
             </div>
         </nav>
     )
 }
+export default Menu

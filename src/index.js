@@ -4,27 +4,30 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import { Menu } from './components/Menu'
+import Menu from './components/Menu'
+import Profile from './pages/Profile'
+import Translate from './pages/Translate'
 import Login from './pages/Login'
 
 ReactDOM.render(
   <React.StrictMode>
-      <Router>
-        <Menu />
-    
-        <div className="container">
-          <Switch>
-            <Route exact path="/">
-              <Login />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route>
+    <Router>
+      <Menu />
 
-            </Route>
+      <div className="container">
+        <Switch>
+          <Route path="/translate">
+            <Translate />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
         </Switch>
       </div>
+
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
