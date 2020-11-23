@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class Login extends React.Component {
+export default class LoginPage extends React.Component {
     constructor(props) {
         super(props)
 
@@ -16,8 +16,8 @@ export default class Login extends React.Component {
             <div className="form-group">
                 <label htmlFor="username">Username</label>
                 <input className="form-control" type="text" id="username" autoComplete="off" placeholder="Enter username of choice to log in" />
-                <button className="btn btn-outline-secondary">Log in</button>
             </div>
+            <button className="btn btn-outline-secondary">Log in</button>
         </form>
         )
     }
