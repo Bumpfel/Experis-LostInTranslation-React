@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Menu = props => {
+const TopMenu = props => {
     return (
         <nav className="navbar navbar-expand-sm navbar-light bg-light">
             <div className="navbar-brand">Navbar</div>
@@ -13,4 +13,4 @@ const Menu = props => {
         </nav>
     )
 }
-export default Menu
+export default TopMenu
