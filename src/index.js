@@ -14,7 +14,7 @@ ReactDOM.render(
     <Router>
       <TopMenu />
 
-      <div className="container">
+      <div className="container mt-3 mb-2">
         <Switch>
           <Route path="/translate" component={TranslatePage} />
           <Route path="/login" component={LoginPage} />
