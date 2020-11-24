@@ -5,8 +5,8 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import TopMenu from './components/TopMenu'
-import ProfilePage from './pages/ProfilePage'
-import TranslatePage from './pages/TranslatePage'
+import ProfilePage from './pages/ProfilePage/'
+import TranslatePage from './pages/TranslatePage/'
 import LoginPage from './pages/LoginPage'
 
 ReactDOM.render(
@@ -16,15 +16,9 @@ ReactDOM.render(
 
       <div className="container">
         <Switch>
-          <Route path="/translate">
-            <TranslatePage />
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage />
-          </Route>
+          <Route path="/translate" component={TranslatePage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/profile" component={ProfilePage} />
         </Switch>
       </div>
 
