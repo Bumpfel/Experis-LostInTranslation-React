@@ -5,7 +5,7 @@ const GuardedRoute = props => {
     const { component: GuardedComponent, path, exact, allow, redirectTo, ...componentProps } = props // destructure properties
 
     return (
-        <Route path={path} exact={exact}>
+        <Route path={path} {...exact}>
             {
                 allow
                 ? <GuardedComponent {...componentProps} />
