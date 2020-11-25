@@ -3,10 +3,9 @@ export const login = (user) => {
 }
 
 export const logout = (user) => {
-    localStorage.removeItem('user',user)
-    localStorage.removeItem('loggedin');
+    localStorage.removeItem('user')
 }
 
 export const isLoggedIn = () => {
-    localStorage.setItem('loggedin',true);
+    return Boolean(localStorage.getItem('user'));
 }

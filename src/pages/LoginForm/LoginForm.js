@@ -1,42 +1,41 @@
 import { React, useState } from 'react';
-import { isLoggedIn, login } from '../../utils/auth';
+import { useHistory } from 'react-router-dom';
+import { login } from '../../utils/auth';
 
 const LoginForm = (props) => {
 
     const [username, setUsername] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
     const [loginError, setLoginError] = useState('');
 
-    const onLoginClick = async () => {
-        setIsLoading(true);
+    const redirect = useHistory('');
+
+    const onUserSubmit = () => {
         setLoginError('');
         let loginResult;
 
         try {
             loginResult = login(username);
-            isLoggedIn(true);
         } catch (e) {
             setLoginError(e.message || e);
         } finally {
-            setIsLoading(false);
             props.complete(loginResult || {});
+            redirect.replace("/profile");
         }
         
     }
 
-    const onUsernameChanged = e => setUsername(e.target.value.trim());
+    const onUsernameChanged = ev => setUsername(ev.target.value.trim());
 
     return (
-        <form onSubmit={onLoginClick}>
+        <form onSubmit={onUserSubmit}>
             <div className="form-group">
                 <label>Username: </label>
                 <input className="form-control" type="text" autoComplete="off" placeholder="Enter username of choice to log in" onChange={onUsernameChanged} />
             </div>
             <div>
-                <button className="btn btn-outline-secondary" type="submit">Login</button>
+                <button className="btn btn-outline-secondary" type="button" onClick={onUserSubmit}>Login</button>
             </div>
 
-            { isLoading && <p>Logging in...</p>}
             { loginError && <p>{loginError}</p>}
 
         </form>
