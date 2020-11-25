@@ -5,24 +5,27 @@ import './translate.css'
 export default class TranslatePage extends React.Component {
 
   searchBar = React.createRef()
+  refreshOnce = false
 
   state = {
-    text: '',
+    translationText: '',
     translation: [],
   }
 
-  componentDidMount = () => {
-    // this.mock()
+  componentDidMount() {
+    // if term was sent through link (from profile page) 
+    const term = this.props.location.term
+    if(term) {
+      this.translate(term)
+    }
   }
 
-  mock = () => { // debug
-    this.searchBar.current.value = 'Hej, hur mår du?!'
-    this.translate({ preventDefault: () => {} })
-  }
-
-  translate = e => {
+  handleSubmit = e => {
     e.preventDefault()
-    const text = this.searchBar.current.value
+    this.translate(this.searchBar.current.value)
+  }
+
+  translate = text => {
     const translation = []
 
     for (let i = 0; i < text.length; i++) {
@@ -31,14 +34,14 @@ export default class TranslatePage extends React.Component {
       )
     }
     this.searchBar.current.value = ''
-    this.setState({ text, translation })
+    this.setState({ translationText: text, translation })
   }
 
   render = () => (
     <React.Fragment>
       <h2>Translate to sign language</h2>
 
-      <form onSubmit={this.translate} className="row">
+      <form onSubmit={this.handleSubmit} className="row">
         <div className="col-8">
           <input className="form-control" type="search" placeholder="Enter a term to translate" ref={this.searchBar} autoFocus />
         </div>
@@ -51,12 +54,11 @@ export default class TranslatePage extends React.Component {
         <div className="mt-5">
           <h4>Translated</h4>
           
-          {this.state.text}
+          {this.state.translationText}
           <div className="border rounded p-2 translationBox">
             {this.state.translation}
           </div>
-        </div>
-      }
+        </div>}
     </React.Fragment>
   )
 }

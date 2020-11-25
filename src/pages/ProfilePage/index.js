@@ -1,4 +1,6 @@
 import React from 'react'
+import './profileStyle.css'
+import { Link } from 'react-router-dom'
 
 const mockData = ['hej på dig', 'dodge this', 'duckduckgo > google', 'my name is dave']
 
@@ -13,7 +15,9 @@ export default class ProfilePage extends React.Component {
   }
 
   render() {
-    const translations = this.state.storedTranslations.map(term => <li key={term}>{ term }</li>)
+    const translations = this.state.storedTranslations.map((term, index) => (
+      <Link to={{pathname: '/translate', term }} key={index}>{ term }</Link>
+    ))
     
     return (
       <React.Fragment>
