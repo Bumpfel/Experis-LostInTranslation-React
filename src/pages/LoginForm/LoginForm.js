@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { login } from '../../utils/auth';
+import { isLoggedIn, login } from '../../utils/auth';
 
 const LoginForm = (props) => {
 
@@ -14,6 +14,7 @@ const LoginForm = (props) => {
 
         try {
             loginResult = login(username);
+            isLoggedIn(true);
         } catch (e) {
             setLoginError(e.message || e);
         } finally {

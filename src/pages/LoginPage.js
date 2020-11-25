@@ -6,7 +6,8 @@ import LoginForm from './LoginForm/LoginForm'
 export default class LoginPage extends React.Component {
 
   state = {
-    user: ''
+    user: '',
+    loggedin: false
   }
 
   componentDidMount() { }
