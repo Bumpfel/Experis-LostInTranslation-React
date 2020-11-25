@@ -3,16 +3,17 @@ import { clearTranslations, loadTranslations, storeTranslation } from '../../uti
 
 const TranslatePage = (props) => {
 
-  const [translation, setTranslation] = useState(['']);
+  const [translation, setTranslation] = useState([]);
 
   const onUserSubmit = () => {
 
+    setTranslation(translation.concat(translation))
     storeTranslation(translation);
     
   }
 
   const getTranslation = () => {
-    console.log(loadTranslations);
+    console.log(loadTranslations());
   }
 
   let onTranslationChanged = ev => setTranslation(ev.target.value.trim());
