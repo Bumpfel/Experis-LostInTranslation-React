@@ -1,20 +1,32 @@
 import React from 'react'
+import { logout } from '../utils/auth';
+
+import LoginForm from './LoginForm/LoginForm'
 
 export default class LoginPage extends React.Component {
 
-  state = {}
+  state = {
+    user: ''
+  }
 
   componentDidMount() { }
 
   render() {
+    const onLoginComplete = () => {
+      console.log("Success!");
+    }
+
+    const onLogoutClick = () => {
+      logout(this.state.user);
+    }
+
     return (
-      <form onSubmit={() => console.log('log in attempt')} >
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input className="form-control" type="text" id="username" autoComplete="off" placeholder="Enter username of choice to log in" />
-        </div>
-        <button className="btn btn-outline-secondary">Log in</button>
-      </form>
+      <div>
+        <LoginForm complete={onLoginComplete} />
+      <div>
+        <button onClick={onLogoutClick}>Logout</button>
+      </div>
+      </div>
     )
   }
 }
