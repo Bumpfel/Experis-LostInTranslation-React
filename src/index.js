@@ -1,25 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import TopMenu from './components/TopMenu'
-import ProfilePage from './pages/ProfilePage/'
-import TranslatePage from './pages/TranslatePage/'
+import GuardedRoute from './components/GuardedRoute';
 import LoginPage from './pages/LoginPage'
+import TranslatePage from './pages/TranslatePage'
+import ProfilePage from './pages/ProfilePage'
+
+const isLoggedIn = true // temp
+const defaultLoggedInRoute = '/translate'
+const defaultNotLoggedInRoute = '/login'
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <TopMenu />
 
-      <div className="container mt-3 mb-2">
+      <div className='container mt-3 mb-2'>
         <Switch>
-          <Route path="/translate" component={TranslatePage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/profile" component={ProfilePage} />
-        </Switch>
+          <GuardedRoute exact path='/login' allow={!isLoggedIn} redirectTo={defaultLoggedInRoute} component={LoginPage} />
+          <GuardedRoute exact path='/translate' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={TranslatePage} />
+          <GuardedRoute exact path='/profile' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={ProfilePage} />
+      </Switch>
       </div>
 
     </Router>
