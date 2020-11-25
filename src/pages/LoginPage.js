@@ -1,18 +1,39 @@
-import React from 'react'
-import LoginForm from './LoginForm/LoginForm'
+import { React, useState } from 'react';
+import { login } from '../utils/auth';
 
+const LoginPage = (props) => {
 
-export default class LoginPage extends React.Component {
+    const [username, setUsername] = useState('');
+    const [loginError, setLoginError] = useState('');
 
-  render() {
+    const onUserSubmit = () => {
+        setLoginError('');
 
-    const onLoginComplete = () => {
+        try {
+            login(username);
+        } catch (e) {
+            setLoginError(e.message || e);
+        } finally {
+        }
+
     }
 
+    const onUsernameChanged = ev => setUsername(ev.target.value.trim());
+
     return (
-      <div>
-        <LoginForm complete={onLoginComplete} />
-      </div>
+        <form onSubmit={onUserSubmit}>
+            <div className="form-group">
+                <label>Username: </label>
+                <input className="form-control" type="text" autoComplete="off" placeholder="Enter username of choice to log in" onChange={onUsernameChanged} />
+            </div>
+            <div>
+                <button className="btn btn-outline-secondary">Login</button>
+            </div>
+
+            { loginError && <p>{loginError}</p>}
+
+        </form>
     )
-  }
 }
+
+export default LoginPage;
