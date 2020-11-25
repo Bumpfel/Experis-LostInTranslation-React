@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -9,6 +9,7 @@ import GuardedRoute from './components/GuardedRoute';
 import LoginPage from './pages/LoginPage'
 import TranslatePage from './pages/TranslatePage'
 import ProfilePage from './pages/ProfilePage'
+import ErrorPage from './pages/ErrorPage';
 
 const isLoggedIn = true // temp
 const defaultLoggedInRoute = '/translate'
@@ -24,7 +25,10 @@ ReactDOM.render(
           <GuardedRoute exact path='/login' allow={!isLoggedIn} redirectTo={defaultLoggedInRoute} component={LoginPage} />
           <GuardedRoute exact path='/translate' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={TranslatePage} />
           <GuardedRoute exact path='/profile' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={ProfilePage} />
-      </Switch>
+          <Route path='*'>
+            <ErrorPage header='Page not found' message='Four, oh four; the page you requested does not exist'/>
+          </Route>
+        </Switch>
       </div>
 
     </Router>
