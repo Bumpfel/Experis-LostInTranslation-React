@@ -1,8 +1,17 @@
-const key = 'translations';
+const tKey = 'translations';
+const uKey = 'user';
 
+export const storeUser = (user) => {
+    localStorage.setItem(uKey, user);
+}
 
-export const storeUser = () => {
-    localStorage.setItem(key, user);
+export const clearUser = (user) => {
+    localStorage.removeItem(uKey)
+    clearTranslations();
+}
+
+export const isUserLoggedIn = () => {
+    return Boolean(localStorage.getItem(uKey));
 }
 
 export const storeTranslation = (translation) => {
@@ -15,15 +24,15 @@ export const storeTranslation = (translation) => {
             translated.shift();
         }
 
-        localStorage.setItem(key, JSON.stringify(translated));
+        localStorage.setItem(tKey, JSON.stringify(translated));
     }
 }
 
 export const loadTranslations = () => {
-    const existingItems = localStorage.getItem(key)
-    return JSON.parse(existingItems) || []
+    const existingItems = localStorage.getItem(tKey)
+    return existingItems ? JSON.parse(existingItems) : []
 }
 
 export const clearTranslations = () => {
-    localStorage.removeItem(key);
+    localStorage.removeItem(tKey);
 }
