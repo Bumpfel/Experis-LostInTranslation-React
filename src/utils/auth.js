@@ -1,4 +1,4 @@
-import { storeUser, clearUser, isUserLoggedIn } from "./storage";
+import { storeUser, clearUser, getUser } from "./storage";
 
 export const login = (user) => {
     storeUser(user)
@@ -9,5 +9,5 @@ export const logout = (user) => {
 }
 
 export const isLoggedIn = () => {
-    return isUserLoggedIn();
+    return Boolean(getUser());
 }

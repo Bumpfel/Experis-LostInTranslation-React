@@ -10,8 +10,8 @@ export const clearUser = (user) => {
     clearTranslations();
 }
 
-export const isUserLoggedIn = () => {
-    return Boolean(localStorage.getItem(uKey));
+export const getUser = () => {
+    return localStorage.getItem(uKey);
 }
 
 export const storeTranslation = (translation) => {
