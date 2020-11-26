@@ -28,15 +28,13 @@ const TopMenu = props => {
     <nav className="navbar navbar-expand-sm navbar-light bg-light">
       <Link className="navbar-brand" to="/">Menu</Link>
       <div className="navbar-nav">
-        <NavLink className="nav-item nav-link" to="/translate">Translate</NavLink>
-        <NavLink className="nav-item nav-link" to="/profile">Profile</NavLink>
-        <NavLink className="nav-item nav-link" to="/login">
-        { !isLoggedIn && <span>Login</span> }
-        </NavLink>
+        <NavLink className="nav-item nav-link" to="/translate">
+          {isLoggedIn && <span>Translate</span>}</NavLink>
+        <NavLink className="nav-item nav-link" to="/profile">
+          {isLoggedIn && <span>Profile</span>}</NavLink>
         <NavLink className="nav-item nav-link" to="/login" onClick={onLogoutClick}>
-          { isLoggedIn && <span>Logout</span> }
-          </NavLink>
-        { isLoggedIn && <span style={userName}>{showUser}</span> }
+          {isLoggedIn && <span>Logout</span>}</NavLink>
+        {isLoggedIn && <span style={userName}>{showUser}</span>}
       </div>
     </nav>
   )
