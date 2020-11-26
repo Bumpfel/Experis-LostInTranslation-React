@@ -1,4 +1,5 @@
 import React from 'react'
+import { storeTranslation } from '../../utils/storage'
 import Sign from './Sign'
 import './translate.css'
 
@@ -34,7 +35,7 @@ export default class TranslatePage extends React.Component {
       )
     }
     this.searchBar.current.value = ''
-    this.setState({ translationText: text, translation })
+    this.setState({ translationText: text, translation });
   }
 
   render = () => (

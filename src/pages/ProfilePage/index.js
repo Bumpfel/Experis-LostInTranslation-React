@@ -1,6 +1,7 @@
 import React from 'react'
 import './profileStyle.css'
 import { Link } from 'react-router-dom'
+import { isLoggedIn } from '../../utils/auth'
 
 const mockData = ['hej på dig', 'dodge this', 'duckduckgo > google', 'my name is dave']
 

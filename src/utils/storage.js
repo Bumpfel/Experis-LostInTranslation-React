@@ -5,7 +5,7 @@ export const login = (user) => {
 }
 
 export const storeTranslation = (translation) => {
-    localStorage.setItem(JSON.stringify({'translation': translation}));
+    localStorage.setItem(key, JSON.stringify({'translation': translation}));
 }
 
 export const loadTranslations = () => {
