@@ -1,3 +1,14 @@
+# Experis-LostInTranslation-React
+This project features a simple login function and a translator that translates text into american hand-signs (letter by letter). The 10 latest searches are stored locally as user data and accessible on the profile page. Those translations can be cleared on the profile page. Logging out clears all user data including the latest translation searches.
+
+[Assignment instructions](assignment-instructions.pdf)
+
+## Deployed project
+https://experis-lostintranslation.herokuapp.com/
+
+## Made by
+[Per-Christer Vågsäter](https://github.com/PerChrister) & [Eric Enoksson](https://github.com/Bumpfel)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
