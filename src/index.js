@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import TopMenu from './components/TopMenu'
 import GuardedRoute from './components/GuardedRoute';
 import LoginPage from './pages/LoginPage'
 import TranslatePage from './pages/TranslatePage'
@@ -20,9 +19,7 @@ const defaultNotLoggedInRoute = '/login'
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <TopMenu />
 
-      <div className='container mt-3 mb-2'>
         <Switch>
           <Route exact path='/'>
             <Redirect to="/login" />
@@ -34,7 +31,6 @@ ReactDOM.render(
             <ErrorPage header='Page not found' message='Four, oh four; the page you requested does not exist'/>
           </Route>
         </Switch>
-      </div>
 
     </Router>
   </React.StrictMode>,

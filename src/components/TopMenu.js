@@ -3,18 +3,14 @@ import { Link, NavLink } from 'react-router-dom'
 import * as Auth from '../utils/auth'
 import { getUser } from '../utils/storage'
 
-const getLoginStatus = () => Auth.isLoggedIn()
-const showUser = getUser();
-
 const TopMenu = props => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(getLoginStatus);
+  const [isLoggedIn, setIsLoggedIn] = useState(Auth.isLoggedIn());
 
   const onLogoutClick = () => {
     Auth.logout();
     setIsLoggedIn(false);
   }
-
 
   const userName = {
     fontColor: 'black',
@@ -28,13 +24,14 @@ const TopMenu = props => {
     <nav className="navbar navbar-expand-sm navbar-light bg-light">
       <Link className="navbar-brand" to="/">Menu</Link>
       <div className="navbar-nav">
-        <NavLink className="nav-item nav-link" to="/translate">
-          {isLoggedIn && <span>Translate</span>}</NavLink>
-        <NavLink className="nav-item nav-link" to="/profile">
-          {isLoggedIn && <span>Profile</span>}</NavLink>
-        <NavLink className="nav-item nav-link" to="/login" onClick={onLogoutClick}>
-          {isLoggedIn && <span>Logout</span>}</NavLink>
-        {isLoggedIn && <span style={userName}>{showUser}</span>}
+        {isLoggedIn &&
+          <React.Fragment>
+            <NavLink className="nav-item nav-link" to="/translate">Translate</NavLink>
+            <NavLink className="nav-item nav-link" to="/profile">My profile</NavLink>
+            <NavLink className="nav-item nav-link" to="/login" onClick={onLogoutClick}>Logout</NavLink>
+            <span style={userName}>{getUser()}</span>
+          </React.Fragment>
+        }
       </div>
     </nav>
   )
