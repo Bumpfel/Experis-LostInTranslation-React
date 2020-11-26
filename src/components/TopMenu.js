@@ -1,14 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const TopMenu = props => {
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light">
-      <div className="navbar-brand">Navbar</div>
+      <Link className="navbar-brand" to="/">Navbar</Link>
       <div className="navbar-nav">
-        <Link className="nav-item nav-link active" to="/translate">Home</Link>
-        <Link className="nav-item nav-link" to="/profile">Profile</Link>
-        <Link className="nav-item nav-link" to="/login">Login</Link>
+        <NavLink className="nav-item nav-link" to="/translate">Translate</NavLink>
+        <NavLink className="nav-item nav-link" to="/profile">Profile</NavLink>
+        <NavLink className="nav-item nav-link" to="/login">Login</NavLink>
       </div>
     </nav>
   )

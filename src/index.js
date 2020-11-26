@@ -22,12 +22,12 @@ ReactDOM.render(
 
       <div className='container mt-3 mb-2'>
         <Switch>
+          <Route exact path='/'>
+            <Redirect to="/login" />
+          </Route>
           <GuardedRoute exact path='/login' allow={!isLoggedIn} redirectTo={defaultLoggedInRoute} component={LoginPage} />
           <GuardedRoute exact path='/translate' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={TranslatePage} />
           <GuardedRoute exact path='/profile' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={ProfilePage} />
-          <Route path=''>
-            <Redirect to="/login" />
-          </Route>
           <Route path='*'>
             <ErrorPage header='Page not found' message='Four, oh four; the page you requested does not exist'/>
           </Route>
