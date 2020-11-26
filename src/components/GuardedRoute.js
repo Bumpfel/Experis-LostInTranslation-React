@@ -7,7 +7,7 @@ const GuardedRoute = props => {
     return (
         <Route path={path} {...exact}>
             {
-                allow
+                allow()
                 ? <GuardedComponent {...componentProps} />
                 : <Redirect to={redirectTo} />
             }
