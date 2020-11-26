@@ -1,24 +1,43 @@
-import React from 'react'
+import { React, useState } from 'react';
+import { login } from '../utils/auth';
 
-export default class LoginPage extends React.Component {
-    constructor(props) {
-        super(props)
+const LoginPage = (props) => {
 
-        this.state = { }
+    const [username, setUsername] = useState('');
+    const [loginError, setLoginError] = useState('');
+
+    const onUserSubmit = () => {
+        setLoginError('');
+
+        try {
+            login(username);
+        } catch (e) {
+            setLoginError(e.message || e);
+        } finally {
+        }
+
     }
 
-    componentDidMount() {
+    const onUsernameChanged = ev => setUsername(ev.target.value.trim());
+
+    const inputStyle = {
+        width: '275px'
     }
 
-    render() {
-        return (
-        <form onSubmit={() => console.log('log in attempt')} >
+    return (
+        <form onSubmit={onUserSubmit}>
             <div className="form-group">
-                <label htmlFor="username">Username</label>
-                <input className="form-control" type="text" id="username" autoComplete="off" placeholder="Enter username of choice to log in" />
+                <label>Username: </label>
+                <input className="form-control" type="text" autoComplete="off" placeholder="Enter username of choice to log in" style={inputStyle} onChange={onUsernameChanged} />
             </div>
-            <button className="btn btn-outline-secondary">Log in</button>
+            <div>
+                <button className="btn btn-outline-secondary">Login</button>
+            </div>
+
+            { loginError && <p>{loginError}</p>}
+
         </form>
-        )
-    }
+    )
 }
+
+export default LoginPage;

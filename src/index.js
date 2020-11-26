@@ -1,29 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 import TopMenu from './components/TopMenu'
-import ProfilePage from './pages/ProfilePage'
-import TranslatePage from './pages/TranslatePage'
+import GuardedRoute from './components/GuardedRoute';
 import LoginPage from './pages/LoginPage'
+import TranslatePage from './pages/TranslatePage'
+import ProfilePage from './pages/ProfilePage'
+import ErrorPage from './pages/ErrorPage';
+import * as Auth from './utils/auth'
+
+const isLoggedIn = () => Auth.isLoggedIn()
+const isNotLoggedIn = () => !Auth.isLoggedIn()
+const defaultLoggedInRoute = '/translate'
+const defaultNotLoggedInRoute = '/login'
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <TopMenu />
 
-      <div className="container">
+      <div className='container mt-3 mb-2'>
         <Switch>
-          <Route path="/translate">
-            <TranslatePage />
+          <Route exact path='/'>
+            <Redirect to="/login" />
           </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage />
+          <GuardedRoute exact path='/login' allow={isNotLoggedIn} redirectTo={defaultLoggedInRoute} component={LoginPage} />
+          <GuardedRoute exact path='/translate' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={TranslatePage} />
+          <GuardedRoute exact path='/profile' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={ProfilePage} />
+          <Route path='*'>
+            <ErrorPage header='Page not found' message='Four, oh four; the page you requested does not exist'/>
           </Route>
         </Switch>
       </div>
