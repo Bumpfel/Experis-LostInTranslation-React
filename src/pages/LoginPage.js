@@ -1,20 +1,39 @@
-import React from 'react'
+import { React, useState } from 'react';
+import { login } from '../utils/storage';
 
-export default class LoginPage extends React.Component {
+const LoginPage = (props) => {
 
-  state = {}
+    const [username, setUsername] = useState('');
+    const [loginError, setLoginError] = useState('');
 
-  componentDidMount() { }
+    const onUserSubmit = () => {
+        setLoginError('');
 
-  render() {
+        try {
+            login(username);
+        } catch (e) {
+            setLoginError(e.message || e);
+        } finally {
+        }
+
+    }
+
+    const onUsernameChanged = ev => setUsername(ev.target.value.trim());
+
     return (
-      <form onSubmit={() => console.log('log in attempt')} >
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input className="form-control" type="text" id="username" autoComplete="off" placeholder="Enter username of choice to log in" />
-        </div>
-        <button className="btn btn-outline-secondary">Log in</button>
-      </form>
+        <form onSubmit={onUserSubmit}>
+            <div className="form-group">
+                <label>Username: </label>
+                <input className="form-control" type="text" autoComplete="off" placeholder="Enter username of choice to log in" onChange={onUsernameChanged} />
+            </div>
+            <div>
+                <button className="btn btn-outline-secondary">Login</button>
+            </div>
+
+            { loginError && <p>{loginError}</p>}
+
+        </form>
     )
-  }
 }
+
+export default LoginPage;
