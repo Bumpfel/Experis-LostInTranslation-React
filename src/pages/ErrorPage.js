@@ -1,9 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const ErrorPage = (props) => (
-    <React.Fragment>
+    <div className="container mt-4">
         <h1>{props.header}</h1>
         <p>{props.message}</p>
-    </React.Fragment>
+
+        <Link to="/">Go Back</Link>
+    </div>
 )
 export default ErrorPage

@@ -26,6 +26,7 @@ export default class TranslatePage extends React.Component {
     const text = this.searchBar.current.value.trim()
     this.translate(text)
     storeTranslation(text)
+    this.searchBar.current.focus()
   }
 
   translate = text => {

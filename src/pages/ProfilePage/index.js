@@ -15,10 +15,9 @@ export default class ProfilePage extends React.Component {
 
   render() {
     const translations = this.state.storedTranslations.map((term, index) => (
-      <React.Fragment key={index}>
+      <li key={index}>
         <Link to={{ pathname: '/translate', term }}>{term}</Link>
-        <br />
-      </React.Fragment>
+      </li>
     ))
 
     return (
@@ -38,9 +37,9 @@ export default class ProfilePage extends React.Component {
             : 'No translations found'}
         </div>
 
-        <div>
+        <ul>
           {translations}
-        </div>
+        </ul>
       </React.Fragment>
     )
   }
