@@ -1,16 +1,16 @@
+import React from 'react'
+import { storeTranslation } from '../../utils/storage'
 import Sign from './Sign'
 import './translate.css'
-import React, { useState } from 'react'
-import { clearTranslations, loadTranslations, storeTranslation } from '../../utils/storage';
 
-const TranslatePage = (props) => {
+export default class TranslatePage extends React.Component {
 
   searchBar = React.createRef()
   refreshOnce = false
 
   state = {
     translationText: '',
-    translation: [],
+    translation: []
   }
 
   componentDidMount() {
@@ -23,7 +23,9 @@ const TranslatePage = (props) => {
 
   handleSubmit = e => {
     e.preventDefault()
-    this.translate(this.searchBar.current.value)
+    const text = this.searchBar.current.value
+    this.translate(text)
+    storeTranslation(text)
   }
 
   translate = text => {
@@ -35,7 +37,7 @@ const TranslatePage = (props) => {
       )
     }
     this.searchBar.current.value = ''
-    this.setState({ translationText: text, translation })
+    this.setState({ translationText: text, translation });
   }
 
   render = () => (
@@ -63,5 +65,3 @@ const TranslatePage = (props) => {
     </React.Fragment>
   )
 }
-
-export default TranslatePage;
