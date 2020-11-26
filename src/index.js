@@ -12,7 +12,8 @@ import ProfilePage from './pages/ProfilePage'
 import ErrorPage from './pages/ErrorPage';
 import * as Auth from './utils/auth'
 
-const isLoggedIn = Auth.isLoggedIn()
+const isLoggedIn = () => Auth.isLoggedIn()
+const isNotLoggedIn = () => !Auth.isLoggedIn()
 const defaultLoggedInRoute = '/translate'
 const defaultNotLoggedInRoute = '/login'
 
@@ -26,7 +27,7 @@ ReactDOM.render(
           <Route exact path='/'>
             <Redirect to="/login" />
           </Route>
-          <GuardedRoute exact path='/login' allow={!isLoggedIn} redirectTo={defaultLoggedInRoute} component={LoginPage} />
+          <GuardedRoute exact path='/login' allow={isNotLoggedIn} redirectTo={defaultLoggedInRoute} component={LoginPage} />
           <GuardedRoute exact path='/translate' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={TranslatePage} />
           <GuardedRoute exact path='/profile' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={ProfilePage} />
           <Route path='*'>
