@@ -1,32 +1,41 @@
 import React from 'react'
 import './profileStyle.css'
 import { Link } from 'react-router-dom'
-
-const mockData = ['hej på dig', 'dodge this', 'duckduckgo > google', 'my name is dave']
+import * as Storage from '../../utils/storage'
 
 export default class ProfilePage extends React.Component {
- 
+
   state = {
-    storedTranslations: mockData
+    storedTranslations: Storage.loadTranslations()
   }
-  
+
   clearTranslations = () => {
+    Storage.clearTranslations()
     this.setState({ storedTranslations: [] })
   }
 
   render() {
     const translations = this.state.storedTranslations.map((term, index) => (
-      <Link to={{pathname: '/translate', term }} key={index}>{ term }</Link>
+      <Link to={{ pathname: '/translate', term }} key={index}>{term}</Link>
     ))
-    
+
     return (
       <React.Fragment>
         <h2>Profile page</h2>
 
-        <button className="btn btn-outline-secondary" onClick={this.clearTranslations}>Clear history</button>
+        <p>Logged in as: {Storage.getUser()}</p>
 
-        <p>Your latest searches</p>
-          
+        <div>
+          {this.state.storedTranslations.length > 0
+            ? 
+              <div>
+                <button className="btn btn-outline-secondary" onClick={this.clearTranslations}>Clear history</button>
+                <br />
+                Your latest translations
+              </div>
+            : 'No translations found'}
+        </div>
+
         <div>
           {translations}
         </div>
