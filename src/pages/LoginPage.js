@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { login } from '../utils/storage';
+import { login } from '../utils/auth';
 
 const LoginPage = (props) => {
 

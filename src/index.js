@@ -10,8 +10,9 @@ import LoginPage from './pages/LoginPage'
 import TranslatePage from './pages/TranslatePage'
 import ProfilePage from './pages/ProfilePage'
 import ErrorPage from './pages/ErrorPage';
+import * as Auth from './utils/auth'
 
-const isLoggedIn = true // temp
+const isLoggedIn = Auth.isLoggedIn()
 const defaultLoggedInRoute = '/translate'
 const defaultNotLoggedInRoute = '/login'
 

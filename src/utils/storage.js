@@ -1,18 +1,29 @@
-const key = 'user';
+const key = 'translations';
 
-export const login = (user) => {
-    localStorage.setItem(key, JSON.stringify({user, 'translation': [] }));
+
+export const storeUser = () => {
+    localStorage.setItem(key, user);
 }
 
 export const storeTranslation = (translation) => {
-    localStorage.setItem(key, JSON.stringify({'translation': translation}));
+    if (translation !== '') {
+        const translated = loadTranslations()
+
+        translated.push(translation);
+
+        if (translated.length > 10){
+            translated.shift();
+        }
+
+        localStorage.setItem(key, JSON.stringify(translated));
+    }
 }
 
 export const loadTranslations = () => {
-   return localStorage.getItem('translation');
+    const existingItems = localStorage.getItem(key)
+    return JSON.parse(existingItems) || []
 }
 
 export const clearTranslations = () => {
-    localStorage.removeItem('translation');
+    localStorage.removeItem(key);
 }
-

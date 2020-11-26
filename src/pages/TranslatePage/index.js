@@ -23,7 +23,9 @@ export default class TranslatePage extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    this.translate(this.searchBar.current.value)
+    const text = this.searchBar.current.value
+    this.translate(text)
+    storeTranslation(text)
   }
 
   translate = text => {
