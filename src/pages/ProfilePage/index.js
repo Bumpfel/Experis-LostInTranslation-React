@@ -1,5 +1,4 @@
 import React from 'react'
-import './profileStyle.css'
 import { Link } from 'react-router-dom'
 import * as Storage from '../../utils/storage'
 
@@ -16,7 +15,10 @@ export default class ProfilePage extends React.Component {
 
   render() {
     const translations = this.state.storedTranslations.map((term, index) => (
-      <Link to={{ pathname: '/translate', term }} key={index}>{term}</Link>
+      <React.Fragment key={index}>
+        <Link to={{ pathname: '/translate', term }}>{term}</Link>
+        <br />
+      </React.Fragment>
     ))
 
     return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import { storeTranslation } from '../../utils/storage'
 import Sign from './Sign'
-import './translate.css'
+import './translateStyle.css'
 
 export default class TranslatePage extends React.Component {
 
@@ -23,7 +23,7 @@ export default class TranslatePage extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    const text = this.searchBar.current.value
+    const text = this.searchBar.current.value.trim()
     this.translate(text)
     storeTranslation(text)
   }
