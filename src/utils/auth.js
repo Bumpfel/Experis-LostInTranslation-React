@@ -1,16 +1,13 @@
-import { clearTranslations } from "./storage";
-
-const key = 'user';
+import { storeUser, clearUser, isUserLoggedIn } from "./storage";
 
 export const login = (user) => {
     storeUser(user)
 }
 
 export const logout = (user) => {
-    localStorage.removeItem(key)
-    clearTranslations();
+    clearUser(user)
 }
 
 export const isLoggedIn = () => {
-    return Boolean(localStorage.getItem(key));
+    return isUserLoggedIn();
 }
