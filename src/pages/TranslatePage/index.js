@@ -7,7 +7,6 @@ const TranslatePage = (props) => {
 
   const onUserSubmit = () => {
 
-    setTranslation(translation.concat(translation))
     storeTranslation(translation);
     
   }

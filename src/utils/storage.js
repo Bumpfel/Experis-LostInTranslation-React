@@ -1,11 +1,18 @@
+const key = 'user';
+
+export const login = (user) => {
+    localStorage.setItem(key, JSON.stringify({user, 'translation': [] }));
+}
+
 export const storeTranslation = (translation) => {
-    localStorage.setItem('translation', [JSON.stringify(translation)]);
+    localStorage.setItem(JSON.stringify({'translation': translation}));
 }
 
 export const loadTranslations = () => {
-    return JSON.parse(localStorage.getItem('translation'));
+   return localStorage.getItem('translation');
 }
 
 export const clearTranslations = () => {
     localStorage.removeItem('translation');
 }
+
