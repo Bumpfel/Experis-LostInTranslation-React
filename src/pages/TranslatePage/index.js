@@ -1,16 +1,15 @@
+import React from 'react'
 import Sign from './Sign'
 import './translate.css'
-import React, { useState } from 'react'
-import { clearTranslations, loadTranslations, storeTranslation } from '../../utils/storage';
 
-const TranslatePage = (props) => {
+export default class TranslatePage extends React.Component {
 
   searchBar = React.createRef()
   refreshOnce = false
 
   state = {
     translationText: '',
-    translation: [],
+    translation: []
   }
 
   componentDidMount() {
@@ -63,5 +62,3 @@ const TranslatePage = (props) => {
     </React.Fragment>
   )
 }
-
-export default TranslatePage;
