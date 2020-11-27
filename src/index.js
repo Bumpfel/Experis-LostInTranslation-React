@@ -4,13 +4,13 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-import TopMenu from './components/TopMenu'
 import GuardedRoute from './components/GuardedRoute';
 import LoginPage from './pages/LoginPage'
 import TranslatePage from './pages/TranslatePage'
 import ProfilePage from './pages/ProfilePage'
 import ErrorPage from './pages/ErrorPage';
 import * as Auth from './utils/auth'
+import TopMenu from './components/TopMenu';
 
 const isLoggedIn = () => Auth.isLoggedIn()
 const isNotLoggedIn = () => !Auth.isLoggedIn()
@@ -25,7 +25,7 @@ ReactDOM.render(
       <div className='container mt-3 mb-2'>
         <Switch>
           <Route exact path='/'>
-            <Redirect to="/login" />
+            <Redirect to={defaultNotLoggedInRoute} />
           </Route>
           <GuardedRoute exact path='/login' allow={isNotLoggedIn} redirectTo={defaultLoggedInRoute} component={LoginPage} />
           <GuardedRoute exact path='/translate' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={TranslatePage} />
