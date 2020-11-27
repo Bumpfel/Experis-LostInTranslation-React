@@ -10,6 +10,7 @@ import TranslatePage from './pages/TranslatePage'
 import ProfilePage from './pages/ProfilePage'
 import ErrorPage from './pages/ErrorPage';
 import * as Auth from './utils/auth'
+import TopMenu from './components/TopMenu';
 
 const isLoggedIn = () => Auth.isLoggedIn()
 const isNotLoggedIn = () => !Auth.isLoggedIn()
@@ -19,10 +20,12 @@ const defaultNotLoggedInRoute = '/login'
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      <TopMenu />
 
+      <div className='container mt-3 mb-2'>
         <Switch>
           <Route exact path='/'>
-            <Redirect to="/login" />
+            <Redirect to={defaultNotLoggedInRoute} />
           </Route>
           <GuardedRoute exact path='/login' allow={isNotLoggedIn} redirectTo={defaultLoggedInRoute} component={LoginPage} />
           <GuardedRoute exact path='/translate' allow={isLoggedIn} redirectTo={defaultNotLoggedInRoute} component={TranslatePage} />
@@ -31,6 +34,7 @@ ReactDOM.render(
             <ErrorPage header='Page not found' message='Four, oh four; the page you requested does not exist'/>
           </Route>
         </Switch>
+      </div>
 
     </Router>
   </React.StrictMode>,

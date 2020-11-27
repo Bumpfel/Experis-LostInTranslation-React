@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { updateMenu } from '../components/TopMenu';
 import { login } from '../utils/auth';
 
 const LoginPage = (props) => {
@@ -11,10 +12,12 @@ const LoginPage = (props) => {
 
     const onUserSubmit = e => {
         e.preventDefault()
+        
         if(username.trim().length <= 1) {
             setLoginError('You username must be at least 2 characters long')
         } else {
             login(username);
+            updateMenu()
             history.replace('/')
         }
     }
