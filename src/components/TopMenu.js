@@ -1,22 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import * as Auth from '../utils/auth'
 import { getUser } from '../utils/storage'
 
-const getLoginStatus = () => Auth.isLoggedIn()
-const showUser = getUser();
+// workaround to trigger an update on the menu (used from login page)
+export function updateMenu() {
+  this.setState({ isLoggedIn: Auth.isLoggedIn() })
+}
 
-const TopMenu = props => {
+export default class TopMenu extends React.Component {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(getLoginStatus);
-
-  const onLogoutClick = () => {
-    Auth.logout();
-    setIsLoggedIn(false);
+  componentDidMount() {
+    /* eslint-disable */
+    updateMenu = updateMenu.bind(this) // eslint warning "no-func-assign"
+    /* eslint-enable */
   }
 
+  state = {
+    isLoggedIn: Auth.isLoggedIn()
+  }
 
-  const userName = {
+  onLogoutClick = () => {
+    Auth.logout();
+    this.setState({ isLoggedIn: false });
+  }
+
+  userNameStyle = {
     fontColor: 'black',
     fontFamily: 'Segoe UI',
     fontSize: '18px',
@@ -24,19 +33,19 @@ const TopMenu = props => {
     marginTop: '7px'
   };
 
-  return (
-    <nav className="navbar navbar-expand-sm navbar-light bg-light">
+  render = () => (
+    <nav className="navbar navbar-expand navbar-light bg-light" style={{ whiteSpace: 'nowrap' }}>
       <Link className="navbar-brand" to="/">Menu</Link>
       <div className="navbar-nav">
-        <NavLink className="nav-item nav-link" to="/translate">
-          {isLoggedIn && <span>Translate</span>}</NavLink>
-        <NavLink className="nav-item nav-link" to="/profile">
-          {isLoggedIn && <span>Profile</span>}</NavLink>
-        <NavLink className="nav-item nav-link" to="/login" onClick={onLogoutClick}>
-          {isLoggedIn && <span>Logout</span>}</NavLink>
-        {isLoggedIn && <span style={userName}>{showUser}</span>}
+        {this.state.isLoggedIn &&
+          <React.Fragment>
+            <NavLink className="nav-item nav-link" to="/translate">Translate</NavLink>
+            <NavLink className="nav-item nav-link" to="/profile">My profile</NavLink>
+            <Link className="nav-item nav-link" to="/" onClick={this.onLogoutClick}>Logout</Link>
+            <span style={this.userNameStyle}>{getUser()}</span>
+          </React.Fragment>
+        }
       </div>
     </nav>
   )
 }
-export default TopMenu
